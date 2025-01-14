@@ -8,7 +8,9 @@ class Program
         int percentage = int.Parse(Console.ReadLine());
 
         string letter = "";
-        string sign = "":
+        string sign = "";
+
+        //This line will determine the letter for the user grade.
 
         if (percentage >= 90)
         {
@@ -16,18 +18,18 @@ class Program
         
         }
 
-        elif (percentage >= 80)
+        else if (percentage >= 80)
         {
-            letter = "B"
+            letter = "B";
         }
 
-        elif (percentage >= 70)
+        else if (percentage >= 70)
 
         {
             letter = "C";
         }
 
-        elif (percentage > = 60)
+        else if (percentage > = 60)
         {
             letter = "D";
         }
@@ -37,6 +39,8 @@ class Program
             letter ="F";
         }
 
+        // This line of code will determine if the user passed the course or not.
+
         if (percentage >= 70)
         {
             Console.WriteLine("Congratulations! You passed the course.");
@@ -44,23 +48,40 @@ class Program
 
         else
         {
-            Console.WriteLine("Unfortunately, you did not pass.")
+            Console.WriteLine("Unfortunately, you did not pass.");
         }
 
-        if (letter != "F")
+        // This line of code will add "+" or "-" to the grade user type.
+
+        if (letter != "F") 
         {
             int lastDigit = percentage % 10;
             if (lastDigit > 7)
             {
-                sign = "+";
+                sign ="+";
             }
+            else if (lastDigit < 3)
+            {
+                sign = "-";
+            }
+            
         }
 
-        elif (lastDigit <3)
+
+        // This line of code will handle exceptional cases.
+
+        if (letter == "A" && sign == "+")
         {
-            sign = "-";
+            sign = ""; 
         }
+        if (letter = "";)
+        {
+            sign = "";
+        }
+
+        Console.WriteLine($"Your grade is: {letter}{sign});
 
 
     }
+
 }
