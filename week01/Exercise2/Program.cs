@@ -14,7 +14,7 @@ class Program
 
         if (percentage >= 90)
         {
-            letterr = "A";
+            letter = "A";
         
         }
 
@@ -29,14 +29,14 @@ class Program
             letter = "C";
         }
 
-        else if (percentage > = 60)
+        else if (percentage >= 60)
         {
             letter = "D";
         }
 
         else
         {
-            letter ="F";
+            letter = "F";
         }
 
         // This line of code will determine if the user passed the course or not.
@@ -53,10 +53,10 @@ class Program
 
         // This line of code will add "+" or "-" to the grade user type.
 
-        if (letter != "F") 
+        if (letter != "F")
         {
             int lastDigit = percentage % 10;
-            if (lastDigit > 7)
+            if (lastDigit >= 7)
             {
                 sign ="+";
             }
@@ -74,12 +74,12 @@ class Program
         {
             sign = ""; 
         }
-        if (letter = "";)
+        if (letter == "F")
         {
             sign = "";
         }
 
-        Console.WriteLine($"Your grade is: {letter}{sign});
+        Console.WriteLine($"Your grade is: {letter}{sign}");
 
 
     }
