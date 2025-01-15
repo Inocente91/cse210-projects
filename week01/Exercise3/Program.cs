@@ -4,30 +4,29 @@ using System.Security.Cryptography;
 class Program
 {
     static void Main(string[] args)
-    {
+    {  // Here start the part 1 for the guessing game:
+
         Console.Write("What is the magic number? ");
-        int magicNumber = int.Parse(Console.ReadLine());  
+        int magicNumber = int.Parse(Console.ReadLine());
 
-        Random randomGenerator = new Random();
-        int number = randomGenerator.Next(1, 11);
+        Console.Write("What is your guess? ");
+        int guess = int.Parse(Console.ReadLine());
 
-        int guess = -1;
-
-        while (guess != magicNumber)
+        if (guess < magicNumber)
         {
-            Console.Write("What is your guess? ");
-            guess int.Parse(Console.ReadLine());
-
-            if (magicNumber > guess)
-            {
-                Console.WriteLine("Higher");
-            }
-
-            else if (magicNumber < guess)
-            {
-                
-            }
+            Console.WriteLine("Higher");
         }
+
+        else if (guess > magicNumber)
+        {
+            Console.WriteLine("Lower");
+        }
+
+        else 
+        {
+            Console.WriteLine("You guessed it");
+        }
+
 
 
     }
