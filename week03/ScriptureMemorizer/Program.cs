@@ -14,14 +14,31 @@ class Program
             return;
         }
 
-    Random random = new Random();
-    Scripture selectedScripture = scriptures[random.Next(scriptures.Count)];
+        Random random = new Random();
+        Scripture selectedScripture = scriptures[random.Next(scriptures.Count)];
 
-    while (true)
-    {
-        Console.Clear();
-        Console.WriteLine(selectedScripture.GetDisplayText());
-        if (selectedScripture.IsCompletelyHidden())
-            break;
-    }   
+        while (true)
+         {
+            Console.Clear();
+            Console.WriteLine(selectedScripture.GetDisplayText());
+            if (selectedScripture.IsCompletelyHidden())
+                break;
+
+            Console.WriteLine("\nPress Enter to hide words or type 'quit' to exit:");
+            string input = Console.ReadLine();
+            if (input.ToLower() == "quit")
+                break;
+
+            selectedScripture.HideRandomWords(3);        
+         }   
     }
+
+    static List<Scripture> LoadScriptures(string filePath)
+    {
+        List<Scripture> scriptures = new List<Scripture>();
+        if (!File.Exists(filePath))
+            return scriptures;
+    }
+
+}
+
