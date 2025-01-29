@@ -1,19 +1,33 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Security.Cryptography.X509Certificates;
 
 public class Journal
 {
     private List<Entry> _entries;
+
     public Journal()
     {
         _entries = new List<Entry>();
     }
 
-    public  void AddEntry(Entry entry)
+    public void AddEntry(Entry entry)
     {
         _entries.Add(entry);
+    }
+
+    public void DisplayEntries()
+    {
+        if (_entries.Count == 0)
+        {
+            Console.WriteLine("No entries found.");
+            return;
+        }
+
+        foreach (var entry in _entries)
+        {
+            Console.WriteLine(entry);
+        }
     }
 
     public void SaveToFile(string filename)
@@ -25,7 +39,7 @@ public class Journal
                 writer.WriteLine($"{entry.Date}|{entry.Prompt}|{entry.Response}");
             }
         }
-    Console.WriteLine("Journal saved successfully.");   
+        Console.WriteLine("Journal saved successfully.");
     }
 
     public void LoadFromFile(string filename)
@@ -45,5 +59,4 @@ public class Journal
         }
         Console.WriteLine("Journal loaded successfully.");
     }
-    
 }
