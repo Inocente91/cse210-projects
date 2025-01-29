@@ -12,4 +12,9 @@ public class Entry
         Response = response;
         Date = date;
     }
+
+    public override string ToString()
+    {
+        return $"Date: {Date}\nPrompt: {Prompt}\nResponse: {Response}\n";
+    }
 }
