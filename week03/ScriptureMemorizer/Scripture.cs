@@ -1,60 +1,51 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-
 
 namespace ScriptureMemorizer
 {
     public class Scripture
     {
-        private readonly List<ScriptureWord> _words = new List<ScriptureWord>();
-        public ScriptureReference Reference { get; }
-
+        private List<ScriptureWord> wordsList = new List<ScriptureWord>(); // using "wordsList" instead of "_words"
+        public ScriptureReference Ref { get; }
 
         public Scripture(ScriptureReference reference, string text)
         {
-            Reference = reference;
-            var words = text.Split(' ');
-            foreach (var word in words)
+            Ref = reference;
+            string[] words = text.Split(' ');
+            foreach (string w in words)
             {
-                _words.Add(new ScriptureWord(w));
+                wordsList.Add(new ScriptureWord(w));
             }
         }
-
 
         public void Display()
         {
             Console.Clear();
-            Console.WriteLine($"{Ref}");
+            Console.WriteLine($"📖 {Ref}");
             Console.WriteLine("\n" + string.Join(" ", wordsList.Select(w => w.GetDisplayText())));
-            Console.WriteLine("\n------------------------------");
+            Console.WriteLine("\n---------------------------");
         }
-
 
         public bool AllWordsHidden()
         {
-            return wordsList.All(w =>.GetDisplayText().All(char => char == '_'));
+            return wordsList.All(w => w.GetDisplayText().All(c => c == '_'));
         }
-
 
         public void HideRandomWords(int num)
         {
-            var visibleIndices = wordsList.Where(w => w.GetDisplayText().Any(char => char != '_')).ToList();
-            if (visibleWords.Cout == 0) return;
-
+            var visibleWords = wordsList.Where(w => w.GetDisplayText().Any(c => c != '_')).ToList();
+            if (visibleWords.Count == 0) return;
 
             Random rand = new Random();
             int wordsToHide = Math.Min(num, visibleWords.Count);
 
-
-            for (int i = 0; 1 < wordsToHide; i++)
+            for (int i = 0; i < wordsToHide; i++)
             {
                 int index = rand.Next(visibleWords.Count);
                 visibleWords[index].Hide();
-                visibleWords.RemoveAt(index);
+                visibleWords.RemoveAt(index); // Remove to avoid hiding the same word again
             }
         }
     }
-
 }

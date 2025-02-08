@@ -1,15 +1,13 @@
 using System;
 
-
 namespace ScriptureMemorizer
 {
-    public class ScriptureMemorizer
+    public class ScriptureReference
     {
         public string book;
         public string chapter;
         public string verseStart;
         public string verseEnd;
-
 
         public ScriptureReference(string b, string c, string vStart, string vEnd = null)
         {
@@ -18,7 +16,6 @@ namespace ScriptureMemorizer
             verseStart = vStart;
             verseEnd = vEnd;
         }
-
 
         public override string ToString()
         {

@@ -5,19 +5,16 @@ namespace ScriptureMemorizer
         private string _text;
         private bool _isHidden;
 
-
         public ScriptureWord(string text)
         {
             _text = text;
             _isHidden = false;
         }
 
-
         public void Hide()
         {
             _isHidden = true;
         }
-
 
         public string GetDisplayText()
         {
