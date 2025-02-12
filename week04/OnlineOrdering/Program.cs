@@ -52,3 +52,45 @@ class Customer
         this.address = address;
     }
 }
+
+
+class Order
+{
+    private List<Product> products;
+    private Customer customer;
+
+    public Order(Customer customer)
+    {
+        this.customer = customer;
+        products = new List<Product>();
+    }
+
+    public void AddProduct(Product p)
+    {
+        products.Add(p);
+    }
+
+    public double GetTotalCost()
+    {
+        double total = 0;
+        foreach (var p in products)
+        {
+            total += p.GetTotalPrice();
+        }
+        return total;
+    }
+
+    public void ShowOrderDetails()
+    {
+        Console.WriteLine("Customer: " + customer.name);
+        Console.WriteLine("Address: " + customer.address);
+        Console.WriteLine("Order Details:");
+
+        foreach (var p in products)
+        {
+            Console.WriteLine("- " + p.name + " (x" + p.quantity + ") - $" + p.GetTotalPrice());
+        }
+
+        Console.WriteLine("Total Cost: $" + GetTotalCost());
+    }
+}
