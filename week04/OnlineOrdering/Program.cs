@@ -39,3 +39,16 @@ class Product
         return price * quantity;
     }
 }
+
+
+class Customer
+{
+    public string name;
+    public string address;
+
+    public Customer(string name, string address)
+    {
+        this.name = name;
+        this.address = address;
+    }
+}
