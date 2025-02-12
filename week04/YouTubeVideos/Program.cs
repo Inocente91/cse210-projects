@@ -32,5 +32,30 @@ class Video
         comments = new List<Comment>();
     }
 
-    
+
+public void AddComment(Comment c)
+{
+    comments.Add(c);
+}
+
+
+public int GetCommentCount()
+{
+    return comments.Count;
+}
+
+
+public void ShowDetails()
+{
+    Console.WriteLine("Title: " + title);
+    Console.WriteLine("Author: " + author);
+    Console.WriteLine("Length: " + length);
+    Console.WriteLine("Comment: " + GetCommentCount());
+
+
+    foreach (var c in comments)
+    {
+        console.WriteLine("- " + c.user + ": " + c.text);
+    }
+}
 }
