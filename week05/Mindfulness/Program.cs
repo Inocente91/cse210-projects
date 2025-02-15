@@ -204,3 +204,7 @@ namespace MindfulnessApp
         }
     }
 }
+
+// Exceeding Requirements:
+// - Added activity logging that tracks each completed activity with duration and timestamp.
+// - Users can view the log via the main menu to see their mindfulness exercise history.
