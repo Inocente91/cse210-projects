@@ -1,9 +1,24 @@
 using System;
+using System.Collections.Generic;
+using System.Threading;
 
-class Program
+namespace MindfulnessApp
 {
-    static void Main(string[] args)
+    public class Activity
     {
-        Console.WriteLine("Hello World! This is the Mindfulness Project.");
+        public string activityName;
+        public string description;
+        public int timeDuaration;
+
+
+        public void BasicStartMessage()
+        {
+            Console.Clear();
+            Console.WriteLine($"Welcome to the {activityName} Activity.");
+            Console.WriteLine(description);
+            Console.Write("How long do you want do this activity? (seconds); ");
+            Console.WriteLine("Get Ready...");
+            WaitSpinner(3);
+        }
     }
 }
