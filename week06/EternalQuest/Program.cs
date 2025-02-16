@@ -1,9 +1,29 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
 
-class Program
+// Base Goal class
+public abstract class Goal
 {
-    static void Main(string[] args)
+    protected string _name;
+    protected string _description;
+    protected int _points;
+
+    public Goal(string name, string description, int points)
     {
-        Console.WriteLine("Hello World! This is the EternalQuest Project.");
+        _name = name;
+        _description = description;
+        _points = points;
+    }
+
+    public abstract int RecordEvent();
+    public abstract bool IsComplete();
+    public virtual string GetDetailsString()
+    {
+        return $"{_name} ({_description})";
+    }
+    public virtual string GetStringRepresentation()
+    {
+        return $"{GetType().Name}:{_name},{_description},{_points}";
     }
 }
