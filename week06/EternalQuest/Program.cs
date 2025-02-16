@@ -27,3 +27,39 @@ public abstract class Goal
         return $"{GetType().Name}:{_name},{_description},{_points}";
     }
 }
+
+// SimpleGoal class
+public class SimpleGoal : Goal
+{
+    private bool _isComplete;
+
+    public SimpleGoal(string name, string description, int points, bool isComplete = false) : base(name, description, points)
+    {
+        _isComplete = isComplete;
+    }
+
+    public override int RecordEvent()
+    {
+        if (!_isComplete)
+        {
+            _isComplete = true;
+            return _points;
+        }
+        return 0;
+    }
+
+    public override bool IsComplete()
+    {
+        return _isComplete;
+    }
+
+    public override string GetStringRepresentation()
+    {
+        return $"{base.GetStringRepresentation()},{_isComplete}";
+    }
+
+    public override string GetDetailsString()
+    {
+        return $"[{(_isComplete ? "X" : " ")}] {base.GetDetailsString()}";
+    }
+}
