@@ -126,3 +126,30 @@ public class ChecklistGoal : Goal
         return $"{base.GetStringRepresentation()},{_targetCount},{_bonusPoints},{_currentCount}";
     }
 }
+
+// NegativeGoal class
+public class NegativeGoal : Goal
+{
+    public NegativeGoal(string name, string description, int points) : base(name, description, points) { }
+
+    public override int RecordEvent()
+    {
+        return -_points;
+    }
+
+    public override bool IsComplete()
+    {
+        return false;
+    }
+
+    public override string GetDetailsString()
+    {
+        return $"[ ] {base.GetDetailsString()} (Negative)";
+    }
+
+    public override string GetStringRepresentation()
+    {
+        return $"NegativeGoal:{_name},{_description},{_points}";
+    }
+}
+
