@@ -153,7 +153,6 @@ public class NegativeGoal : Goal
     }
 }
 
-
 // GoalManager class
 public class GoalManager
 {
@@ -276,3 +275,135 @@ public class GoalManager
         }
     }
 }
+
+// Main Program
+class Program
+{
+    static void Main(string[] args)
+    {
+        GoalManager manager = new GoalManager();
+        bool running = true;
+
+        while (running)
+        {
+            Console.WriteLine();
+            Console.WriteLine($"Current Score: {manager.Score}");
+            Console.WriteLine($"Highest Score: {manager.HighestScore}");
+            Console.WriteLine($"Level: {manager.Level} (Next level in {manager.NextLevelPoints} points)");
+            Console.WriteLine("\nMenu Options:");
+            Console.WriteLine("1. Create New Goal");
+            Console.WriteLine("2. List Goals");
+            Console.WriteLine("3. Record Event");
+            Console.WriteLine("4. Save Goals");
+            Console.WriteLine("5. Load Goals");
+            Console.WriteLine("6. Exit");
+            Console.Write("Select a choice from the menu: ");
+            string choice = Console.ReadLine();
+
+            switch (choice)
+            {
+                case "1":
+                    CreateNewGoal(manager);
+                    break;
+                case "2":
+                    manager.DisplayGoals();
+                    break;
+                case "3":
+                    RecordEvent(manager);
+                    break;
+                case "4":
+                    SaveGoals(manager);
+                    break;
+                case "5":
+                    LoadGoals(manager);
+                    break;
+                case "6":
+                    running = false;
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice. Please try again.");
+                    break;
+            }
+        }
+    }
+
+    static void CreateNewGoal(GoalManager manager)
+    {
+        Console.WriteLine("\nThe types of Goals are:");
+        Console.WriteLine("1. Simple Goal");
+        Console.WriteLine("2. Eternal Goal");
+        Console.WriteLine("3. Checklist Goal");
+        Console.WriteLine("4. Negative Goal");
+        Console.Write("Which type of goal would you like to create? ");
+        string typeChoice = Console.ReadLine();
+
+        Console.Write("What is the name of your goal? ");
+        string name = Console.ReadLine();
+        Console.Write("What is a short description of it? ");
+        string description = Console.ReadLine();
+        Console.Write("What is the amount of points associated with this goal? ");
+        int points = int.Parse(Console.ReadLine());
+
+        switch (typeChoice)
+        {
+            case "1":
+                manager.AddGoal(new SimpleGoal(name, description, points));
+                break;
+            case "2":
+                manager.AddGoal(new EternalGoal(name, description, points));
+                break;
+            case "3":
+                Console.Write("How many times does this goal need to be accomplished for a bonus? ");
+                int target = int.Parse(Console.ReadLine());
+                Console.Write("What is the bonus for accomplishing it that many times? ");
+                int bonus = int.Parse(Console.ReadLine());
+                manager.AddGoal(new ChecklistGoal(name, description, points, target, bonus));
+                break;
+            case "4":
+                manager.AddGoal(new NegativeGoal(name, description, points));
+                break;
+            default:
+                Console.WriteLine("Invalid type. Goal not created.");
+                break;
+        }
+        Console.WriteLine("Goal created successfully!");
+    }
+
+    static void RecordEvent(GoalManager manager)
+    {
+        Console.WriteLine("\nSelect a goal to record:");
+        manager.DisplayGoals();
+        Console.Write("Enter the number of the goal: ");
+        if (int.TryParse(Console.ReadLine(), out int index) && index > 0 && index <= manager.Score)
+        {
+            manager.RecordEvent(index - 1);
+        }
+        else
+        {
+            Console.WriteLine("Invalid selection.");
+        }
+    }
+
+    static void SaveGoals(GoalManager manager)
+    {
+        Console.Write("Enter the filename to save goals: ");
+        string filename = Console.ReadLine();
+        manager.SaveGoals(filename);
+        Console.WriteLine("Goals saved successfully!");
+    }
+
+    static void LoadGoals(GoalManager manager)
+    {
+        Console.Write("Enter the filename to load goals: ");
+        string filename = Console.ReadLine();
+        manager.LoadGoals(filename);
+        Console.WriteLine("Goals loaded successfully!");
+    }
+}
+
+/*
+Exceeding Requirements:
+- Added a NegativeGoal type where each recording subtracts points, encouraging users to avoid bad habits.
+- Implemented a level system where users level up every 1000 points in their highest score, receiving bonus points on each level up.
+- Display the current level, highest score, and progress towards the next level to motivate continued progress.
+*/
