@@ -50,3 +50,21 @@ namespace ExerciseTracker
         public override double GetSpeed() => (_distance / Minutes) * 60;
         public override double GetPace() => Minutes / _distance;
     }
+
+    // Class for Cycling activity
+    public class Cycling : Activity
+    {
+        private double _speed; // Speed in mph
+
+        // Constructor to set date, minutes, and speed
+        public Cycling(DateTime date, int minutes, double speed)
+            : base(date, minutes)
+        {
+            _speed = speed;
+        }
+
+        // Override methods for cycling
+        public override double GetDistance() => (_speed * Minutes) / 60;
+        public override double GetSpeed() => _speed;
+        public override double GetPace() => 60 / _speed;
+    }
