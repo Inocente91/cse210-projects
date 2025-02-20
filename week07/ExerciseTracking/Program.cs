@@ -86,3 +86,25 @@ namespace ExerciseTracker
         public override double GetSpeed() => (GetDistance() / Minutes) * 60;
         public override double GetPace() => Minutes / GetDistance();
     }
+
+    // Main program
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Create a list to hold activities
+            var activities = new List<Activity>();
+
+            // Add some activities to the list
+            activities.Add(new Running(new DateTime(2023, 10, 1), 30, 3.0)); // Running activity
+            activities.Add(new Cycling(new DateTime(2023, 10, 2), 45, 15.0)); // Cycling activity
+            activities.Add(new Swimming(new DateTime(2023, 10, 3), 20, 30)); // Swimming activity
+
+            // Loop through the list and display summaries
+            foreach (var activity in activities)
+            {
+                Console.WriteLine(activity.GetSummary());
+            }
+        }
+    }
+}
