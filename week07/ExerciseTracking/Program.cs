@@ -32,3 +32,21 @@ namespace ExerciseTracker
                    $"Distance: {GetDistance():0.0} miles, Speed: {GetSpeed():0.0} mph, Pace: {GetPace():0.0} min per mile";
         }
     }
+
+    // Class for Running activity
+    public class Running : Activity
+    {
+        private double _distance; // Distance in miles
+
+        // Constructor to set date, minutes, and distance
+        public Running(DateTime date, int minutes, double distance)
+            : base(date, minutes)
+        {
+            _distance = distance;
+        }
+
+        // Override methods for running
+        public override double GetDistance() => _distance;
+        public override double GetSpeed() => (_distance / Minutes) * 60;
+        public override double GetPace() => Minutes / _distance;
+    }
