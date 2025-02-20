@@ -68,3 +68,21 @@ namespace ExerciseTracker
         public override double GetSpeed() => _speed;
         public override double GetPace() => 60 / _speed;
     }
+
+    // Class for Swimming activity
+    public class Swimming : Activity
+    {
+        private int _laps; // Number of laps
+
+        // Constructor to set date, minutes, and laps
+        public Swimming(DateTime date, int minutes, int laps)
+            : base(date, minutes)
+        {
+            _laps = laps;
+        }
+
+        // Override methods for swimming
+        public override double GetDistance() => _laps * 50 / 1000 * 0.62; // Convert laps to miles
+        public override double GetSpeed() => (GetDistance() / Minutes) * 60;
+        public override double GetPace() => Minutes / GetDistance();
+    }
